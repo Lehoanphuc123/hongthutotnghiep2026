@@ -1353,3 +1353,34 @@ body {
 .stage:has(.envelope-screen.opened) .page.active {
     opacity: 1 !important;
 }
+
+
+/* =========================================
+   FIX HIỂN THỊ ẢNH TRÊN ĐIỆN THOẠI
+   Ghi đè các quy tắc .page cũ bị trùng lặp
+========================================= */
+@media (max-width: 480px) {
+  .stage {
+    width: 100%;
+    min-height: 0;
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  .page {
+    width: min(calc(100% - 16px), calc((100% - 16px) * 1240 / 1748)) !important;
+    height: auto !important;
+    max-width: calc(100% - 16px) !important;
+    max-height: calc(100% - 16px) !important;
+    aspect-ratio: 1240 / 1748;
+    object-fit: contain;
+    border-radius: 7px;
+  }
+
+  .stage::after {
+    width: min(calc(100% - 16px), calc((100% - 16px) * 1240 / 1748));
+    height: auto;
+    max-height: calc(100% - 16px);
+    aspect-ratio: 1240 / 1748;
+  }
+}
